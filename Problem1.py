@@ -14,9 +14,11 @@ class Solution(object):
         :type nums2: List[int]
         :rtype: List[int]
         """
+        # Function to perform binary search on nums2 to find the index of the target
         def binarySearch(nums,idx,target):
             left=idx
             right=len(nums)-1
+            # Perform binary search to find the index of the target in nums2
             while(left<=right):
                 mid=left+(right-left)/2
                 if nums[mid]<target:
@@ -32,14 +34,19 @@ class Solution(object):
         low=0
         nums1.sort()
         nums2.sort()
+        # If either array is empty, return an empty list
         if n1==0 or n2==0:
             return []
         idx=0
+        # Iterate through nums1 and use binary search to find elements in nums2
         for i in range(len(nums1)):
+            # If the current element is less than the last found element, skip it
             loc=binarySearch(nums2,idx,nums1[i])
+            # If the element is found in nums2, add it to the result list and update the index
             if loc<n2 and nums2[loc]==nums1[i]:
                 ls.append(nums1[i])
                 idx=loc+1
+        # Convert the result list to a fixed-size list
         res=[0]*len(ls)
         i=0
         for ele in ls:
